@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout & Payment - Cinephilic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        <span class="logo-brand">CINEPHILIC</span>
+      </a>
+      <span style="font-weight: 700; color: var(--accent-gold);">🔒 Secure Checkout</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="checkout-grid">
+      <!-- Payment Details Column -->
+      <div>
+        <div class="checkout-card">
+          <h3>Payment Method</h3>
+          <div class="payment-methods">
+            <div class="payment-option active">
+              <input type="radio" name="pay-method" checked>
+              <div>
+                <strong>Credit / Debit Card</strong>
+                <p style="font-size: 0.82rem; color: var(--text-muted);">Visa, MasterCard, RuPay</p>
+              </div>
+            </div>
+            <div class="payment-option">
+              <input type="radio" name="pay-method">
+              <div>
+                <strong>UPI Instant Payment</strong>
+                <p style="font-size: 0.82rem; color: var(--text-muted);">GPay, PhonePe, Paytm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="checkout-card">
+          <h3>Promo Code & Discounts</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Use promo code <strong>CINE50</strong> for ₹50 off</p>
+          <div class="promo-wrap">
+            <input type="text" id="promo-input" class="form-control" placeholder="Enter promo code (e.g. CINE50)">
+            <button id="apply-promo-btn" class="btn btn-secondary">Apply</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary Column -->
+      <div>
+        <div class="checkout-card">
+          <h3>Order Overview</h3>
+          <h4 id="checkout-movie-title" style="font-size: 1.2rem; margin-bottom: 4px;">Movie Title</h4>
+          <p id="checkout-show-info" style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px;">Cinema • Showtime</p>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">Seats: <strong id="checkout-seats" style="color: var(--accent-red);">Selected Seats</strong></p>
+
+          <div class="price-row">
+            <span>Tickets Subtotal</span>
+            <span id="checkout-subtotal">₹0</span>
+          </div>
+          <div class="price-row">
+            <span>Convenience Fee</span>
+            <span id="checkout-fee">₹30</span>
+          </div>
+          <div class="price-row" id="checkout-discount-row" style="display: none; color: var(--accent-gold);">
+            <span>Promo Discount</span>
+            <span id="checkout-discount">-₹0</span>
+          </div>
+          <div class="price-row total">
+            <span>Total Payable</span>
+            <span id="checkout-total">₹0</span>
+          </div>
+
+          <button id="pay-now-btn" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 14px;">Confirm & Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/tmdb.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

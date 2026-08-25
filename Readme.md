@@ -1,60 +1,70 @@
-# Cinephilic – A Modern, Interactive Movie Ticketing Platform
+# 🎬 Cinephilic - Movie Ticketing & Discovery Platform
 
-Cinephilic is a client-side movie ticket booking web app designed to provide a fast, immersive, and visually stunning experience — without requiring a complex backend setup. Everything runs seamlessly in your browser with real-time UI interactions, smooth micro-animations, and dynamic seat reservation logic.
-
-Cinephilic ships as two connected experiences:
-1. An immersive, hero-driven landing page that showcases trending movies, trailers, and event highlights with scroll-driven animations.
-2. A fully interactive booking & authentication portal (accessible via "Book Tickets" / "Sign In"), featuring dynamic seat selection, instant price calculations, and local user sessions built with vanilla JavaScript (no page reloads).
+Cinephilic is a lightweight, modern, beginner-friendly web application for movie discovery, theater selection, interactive seat booking, and digital E-ticket generation built with **HTML5**, **Vanilla CSS3**, and **Vanilla JavaScript (ES6)**.
 
 ---
 
-## Features
+## 📁 Project Architecture & Directory Structure
 
-* **Cinematic Hero Page** – Engaging hero banner featuring animated action buttons, glowing badges, and smooth entrance reveals.
-* **Dynamic Movie Catalog** – Interactive movie grid displaying genre tags, duration, ratings, and instant booking overlays.
-* **Interactive Seat Selection** – Visual theater screen layout allowing users to select/deselect seats with dynamic total price computation.
-* **Glassmorphism Auth Suite** – Sleek, modern Login and Registration forms with smooth tab toggles and form validation.
-* **LocalStorage Persistence** – Your booked tickets, user profiles, and active sessions stay saved across page refreshes.
-* **Fully Responsive** – Optimized and tested across desktop, tablet, and mobile viewport sizes.
-* **Micro-Animations & Feedback** – Instant UI feedback on button hover, form submit, and scroll triggers for an exciting visual feel.
+```
+cinephilic/
+│
+├── index.html                 ← Home page (Hero, Featured, Now Showing, Coming Soon)
+├── movies.html                ← Movie discovery & live search catalog
+├── movie-details.html        ← Movie information, cast, synopsis & trailer modal
+├── theatres.html             ← Theatre / Cinema hall selection
+├── shows.html                ← Date & showtime slot selection
+├── seats.html                ← Interactive seat selection grid & price calculation
+├── checkout.html             ← Order overview, promo codes & payment simulation
+├── confirmation.html         ← Printable E-ticket display & QR code
+├── auth.html                 ← Sign In / Registration forms
+├── profile.html              ← User profile & booking history manager
+│
+├── css/
+│   ├── style.css             ← Global design system, reset, variables, navbar & footer
+│   ├── home.css              ← Homepage hero banner, genre filter pills & movie grids
+│   ├── movies.css            ← Search controls, filter bar & catalog layout
+│   ├── details.css           ← Movie hero backdrop, cast cards & trailer modal
+│   ├── booking.css           ← Theatre list, showtimes & interactive seating layout
+│   ├── checkout.css          ← Order summary, payment options & ticket styles
+│   └── profile.css           ← User avatar header & booking ticket history cards
+│
+├── js/
+│   ├── tmdb.js               ← TMDB API helper & offline fallback catalog
+│   ├── home.js               ← Homepage hero rendering & genre filter logic
+│   ├── movies.js             ← Movie search input, genre/language filter & sorting
+│   ├── details.js            ← URL query reader, movie details renderer & trailer player
+│   ├── theatres.js           ← Theatre listings & movie context manager
+│   ├── shows.js              ← Date picker & showtime slot selector
+│   ├── seats.js              ← Seating grid renderer, seat toggle & dynamic pricing
+│   ├── checkout.js           ← Promo code handler, order calculation & payment confirmation
+│   ├── auth.js               ← LocalStorage user sign-in & session manager
+│   └── profile.js            ← User history loader & ticket cancellation handler
+│
+├── assets/
+│   ├── logo.png              ← Application logo branding
+│   └── icons/                ← Cinema SVG icons
+│
+└── README.md                 ← Project documentation
+```
 
 ---
 
-## Technology Used
+## ⚡ Key Features
 
-* **HTML5** – Semantic layout structuring
-* **CSS3** – Custom properties (design tokens), Grid/Flexbox, dynamic animations & glassmorphism backdrop filters
-* **Vanilla JavaScript (ES6+)** – DOM manipulation, event handling, dynamic UI rendering (no frameworks, no build tools)
-* **Browser LocalStorage** – Client-side persistence layer for sessions and ticket bookings
-* **FontAwesome Icons** – Vector icons for sleek navigation and action prompts
-
-> **Note:** No React, Vue, Angular, jQuery, Bootstrap, Tailwind, backend, or external database is used anywhere in this project.
+1. **Movie Discovery & Search**: Filter blockbusters by title, genre, language, or rating with dynamic TMDB fallback.
+2. **Interactive Seat Booking**: Real-time visual seating layout (Available, Selected, Reserved) with dynamic total price computation.
+3. **Checkout & E-Ticket**: Instant discount promo code application (`CINE50`), mock payment options, and printable digital E-tickets with unique booking reference codes.
+4. **Local State Persistence**: Seamless session state management using browser `localStorage` for active bookings, current user profile, and user ticket history.
+5. **Strict Code Standard**: Every single file (`.html`, `.css`, `.js`, `.md`) strictly adheres to **< 250 Lines of Code (LOC)**, keeping the project ultra beginner-friendly and clean.
 
 ---
 
-## How to Run the Project
+## 🚀 How to Run the Project
 
-No installation and no build step required.
-1. Download / clone the project folder.
-2. Open `index.html` in any modern browser (Chrome, Firefox, Edge, Safari).
-3. That's it – the whole app runs client-side.
-
----
-
-## How LocalStorage Works in Cinephilic
-
-Cinephilic stores your bookings and session data under key LocalStorage entries:
-
-### `cinephilicBookings`
-The value is a JSON array of booking objects, for example:
-
-```json
-[
-  {
-    "bookingId": "CIN-892301",
-    "movieTitle": "Cyberpunk 2099",
-    "seats": ["A3", "A4"],
-    "totalAmount": 500,
-    "bookingDate": "2026-08-05"
-  }
-]
+1. Clone or download this project repository.
+2. Open `index.html` in any web browser (Google Chrome, Mozilla Firefox, Edge, Safari) or run a local dev server:
+   ```bash
+   npx serve .
+   ```
+3. Enjoy exploring Cinephilic!

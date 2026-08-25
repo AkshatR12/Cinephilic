@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmation - Cinephilic E-Ticket</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        <span class="logo-brand">CINEPHILIC</span>
+      </a>
+      <a href="profile.html" class="btn btn-secondary">My Bookings</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div style="text-align: center; margin-top: 35px;">
+      <span style="font-size: 3rem;">🎉</span>
+      <h1 style="font-size: 2rem; font-weight: 800; margin-top: 8px;">Booking Confirmed!</h1>
+      <p style="color: var(--text-muted);">Your movie ticket is booked and confirmed. Present this E-Ticket at entrance.</p>
+    </div>
+
+    <!-- E-Ticket Display -->
+    <div class="ticket-wrapper">
+      <div class="ticket-header">
+        <h2 id="ticket-movie-title" style="font-size: 1.6rem; font-weight: 800;">Movie Title</h2>
+        <span id="ticket-ref" style="font-weight: 700; letter-spacing: 1px;">REF: CP102938</span>
+      </div>
+      <div class="ticket-body">
+        <div class="ticket-grid">
+          <div class="ticket-field">
+            <label>Cinema & Hall</label>
+            <p id="ticket-cinema">Cinephilic IMAX 4K</p>
+          </div>
+          <div class="ticket-field">
+            <label>Showtime</label>
+            <p id="ticket-time">05:15 PM</p>
+          </div>
+          <div class="ticket-field">
+            <label>Reserved Seats</label>
+            <p id="ticket-seats">A1, A2</p>
+          </div>
+          <div class="ticket-field">
+            <label>Total Paid</label>
+            <p id="ticket-amount">₹470</p>
+          </div>
+        </div>
+        <div class="ticket-qr">
+          <div style="font-size: 4rem; letter-spacing: 5px;">📱 🎟️ 📱</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Scan QR Code at Cinema Gate Entry</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 50px; display: flex; gap: 15px; justify-content: center;">
+      <button onclick="window.print()" class="btn btn-secondary">🖨️ Print E-Ticket</button>
+      <a href="index.html" class="btn btn-primary">Back to Home</a>
+    </div>
+  </main>
+
+  <script src="js/tmdb.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = localStorage.getItem('cinephilic_last_confirmed');
+      if (!data) return;
+      const ticket = JSON.parse(data);
+
+      document.getElementById('ticket-movie-title').textContent = ticket.movie.title;
+      document.getElementById('ticket-ref').textContent = `REF: ${ticket.bookingRef}`;
+      document.getElementById('ticket-cinema').textContent = 'Cinephilic IMAX Plaza';
+      document.getElementById('ticket-time').textContent = ticket.showTime;
+      document.getElementById('ticket-seats').textContent = ticket.seats.join(', ');
+      document.getElementById('ticket-amount').textContent = `₹${ticket.finalAmount || ticket.totalAmount}`;
+    });
+  </script>
+</body>
+</html>

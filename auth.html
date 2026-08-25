@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In / Register - Cinephilic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="justify-content: center; align-items: center; background: radial-gradient(circle at top, #1c2237, #0b0d17);">
+
+  <div class="container" style="max-width: 440px;">
+    <div style="text-align: center; margin-bottom: 25px;">
+      <a href="index.html" class="logo" style="justify-content: center;">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        <span class="logo-brand">CINEPHILIC</span>
+      </a>
+    </div>
+
+    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
+      <!-- Auth Mode Tabs -->
+      <div style="display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
+        <button id="tab-login" class="btn btn-outline" style="flex: 1;">Sign In</button>
+        <button id="tab-register" class="btn btn-outline" style="flex: 1;">Register</button>
+      </div>
+
+      <h2 id="form-title" style="font-size: 1.5rem; text-align: center; margin-bottom: 20px;">Welcome Back</h2>
+
+      <form id="auth-form">
+        <div class="form-group" id="name-group" style="display: none;">
+          <label>Full Name</label>
+          <input type="text" id="name-input" class="form-control" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email-input" class="form-control" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password-input" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" id="form-submit-btn" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px;">Sign In</button>
+      </form>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="index.html" style="color: var(--text-muted); font-size: 0.9rem;">← Back to Homepage</a>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

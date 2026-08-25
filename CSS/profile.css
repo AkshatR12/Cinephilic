@@ -1,0 +1,82 @@
+/* Cinephilic - Profile & History Styles (css/profile.css) */
+.profile-header {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 35px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff2a5f, #790022);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.profile-info h2 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.profile-info p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* History Cards */
+.booking-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.booking-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.booking-card:hover {
+  border-color: rgba(255, 42, 95, 0.4);
+}
+
+.booking-card-poster {
+  width: 90px;
+  border-radius: 8px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.booking-card-details {
+  flex-grow: 1;
+}
+
+.booking-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.booking-meta {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}

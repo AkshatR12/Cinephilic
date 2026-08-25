@@ -1,0 +1,206 @@
+/* Cinephilic - Booking & Seats Styles (css/booking.css) */
+/* Theatre Selection */
+.theatre-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.theatre-card:hover {
+  border-color: rgba(255, 42, 95, 0.4);
+}
+
+.theatre-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.theatre-info {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 15px;
+}
+
+.facility-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  font-size: 0.78rem;
+}
+
+/* Date & Showtime Slots */
+.date-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.date-btn {
+  padding: 12px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  color: var(--text-main);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.date-btn.active,
+.date-btn:hover {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+.showtime-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.time-slot {
+  padding: 10px 18px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.time-slot:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+/* Screen & Seating Grid */
+.screen-wrapper {
+  text-align: center;
+  margin: 30px 0 40px 0;
+  perspective: 400px;
+}
+
+.screen {
+  height: 12px;
+  background: linear-gradient(90deg, transparent, #ff2a5f, transparent);
+  box-shadow: 0 10px 30px var(--accent-glow);
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.screen-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.seats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  overflow-x: auto;
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row-label {
+  width: 25px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.row-seats {
+  display: flex;
+  gap: 8px;
+}
+
+.seat {
+  width: 32px;
+  height: 30px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px 6px 3px 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.seat:hover:not(.occupied) {
+  border-color: var(--accent-red);
+  transform: scale(1.15);
+}
+
+.seat.selected {
+  background: var(--accent-red);
+  color: #fff;
+  border-color: var(--accent-red);
+}
+
+.seat.occupied {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.15);
+  border-color: transparent;
+  cursor: not-allowed;
+}
+
+/* Seat Legend */
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Sticky Booking Summary Bar */
+.booking-bar {
+  position: sticky;
+  bottom: 0;
+  background: rgba(22, 27, 41, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-color);
+  padding: 18px 0;
+  z-index: 900;
+}
+
+.booking-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-price {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+}
