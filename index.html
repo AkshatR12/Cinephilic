@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinephilic - Movie Ticketing & Discovery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        <span class="logo-brand">CINEPHILIC</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="movies.html">Movies</a>
+        <a href="theatres.html">Theatres</a>
+        <a href="info.html">Help & Info</a>
+        <a href="profile.html">My Bookings</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="auth.html?mode=login" class="btn btn-secondary">Sign In</a>
+        <a href="auth.html?mode=register" class="btn btn-primary">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="hero-content" id="hero-content">
+        <!-- Dynamic Hero content via home.js -->
+      </div>
+    </section>
+
+    <!-- Genre Quick Filters -->
+    <section class="section" style="padding-bottom: 0;">
+      <div class="genre-pills">
+        <button class="genre-pill active" data-genre="All">🎬 All Genres</button>
+        <button class="genre-pill" data-genre="Action">🔥 Action</button>
+        <button class="genre-pill" data-genre="Sci-Fi">🚀 Sci-Fi</button>
+        <button class="genre-pill" data-genre="Drama">🎭 Drama</button>
+        <button class="genre-pill" data-genre="Comedy">😂 Comedy</button>
+        <button class="genre-pill" data-genre="Animation">🍿 Animation</button>
+      </div>
+    </section>
+
+    <!-- Now Showing -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Now Showing in Cinemas</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Click any movie to check details, starring cast, or book your seats</p>
+        </div>
+        <a href="movies.html?tab=now_showing" class="view-all-link">View all movies →</a>
+      </div>
+      <div class="movie-grid" id="now-showing-grid"></div>
+    </section>
+
+    <!-- VIP Banner -->
+    <section class="experience-banner">
+      <div class="exp-content">
+        <span class="badge badge-gold">Cinephilic VIP Membership</span>
+        <h2>Elevate Your Cinema Experience</h2>
+        <p>Get up to 25% discount on snack combos and zero convenience fee on Tuesdays.</p>
+        <div style="display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
+          <a href="auth.html?mode=register" class="btn btn-primary">Join VIP Club Now</a>
+          <a href="info.html" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div style="font-size: 4.5rem;">🎟️🍿</div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Coming Soon to Theatres</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Explore upcoming blockbusters and watch latest official trailers</p>
+        </div>
+        <a href="movies.html?tab=upcoming" class="view-all-link">Explore upcoming →</a>
+      </div>
+      <div class="movie-grid" id="coming-soon-grid"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><span class="logo-brand">CINEPHILIC</span></a>
+          <p>Your ultimate destination for discovering cinema and reserving premium seats.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="movies.html">Movies</a></li>
+            <li><a href="theatres.html">Theatres</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="auth.html?mode=login">Sign In</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="info.html">FAQ Center</a></li>
+            <li><a href="info.html">Terms & Policies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Cinephilic Inc. Built for MCA Project.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/movies-data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

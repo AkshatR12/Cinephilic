@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search & Discover Movies - Cinephilic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/movies.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        <span class="logo-brand">CINEPHILIC</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="movies.html" class="active">Movies</a>
+        <a href="theatres.html">Theatres</a>
+        <a href="info.html">Help & Info</a>
+        <a href="profile.html">My Bookings</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="auth.html?mode=login" class="btn btn-secondary">Sign In</a>
+        <a href="auth.html?mode=register" class="btn btn-primary">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="movies-header">
+      <h1>Explore Movies Catalog</h1>
+      <p>Search blockbusters, filter by language or genre, and reserve your cinema seats</p>
+    </div>
+
+    <!-- Status Tabs -->
+    <div style="display: flex; gap: 12px; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; flex-wrap: wrap;">
+      <button class="status-tab-btn active btn btn-secondary" data-status="all">All Movies</button>
+      <button class="status-tab-btn btn btn-outline" data-status="now_showing">🔥 Now Showing</button>
+      <button class="status-tab-btn btn btn-outline" data-status="coming_soon">⏳ Coming Soon</button>
+    </div>
+
+    <!-- Filter Control Bar -->
+    <div class="filter-bar">
+      <div class="search-box-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Search by title, director, or keyword...">
+      </div>
+      <select id="genre-filter" class="filter-select">
+        <option value="all">All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Drama">Drama</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Animation">Animation</option>
+      </select>
+      <select id="language-filter" class="filter-select">
+        <option value="all">All Languages</option>
+        <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
+      </select>
+      <select id="sort-filter" class="filter-select">
+        <option value="rating-desc">Sort by Rating</option>
+        <option value="title-asc">Sort by Title</option>
+        <option value="price-asc">Sort by Price</option>
+      </select>
+    </div>
+
+    <!-- Movies Catalog Grid -->
+    <div class="movie-grid" id="movies-catalog-grid"></div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="empty-state" style="display: none; text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border-color);">
+      <div class="empty-icon" style="font-size: 3rem; margin-bottom: 15px;">🎬</div>
+      <h3 style="font-size: 1.4rem; margin-bottom: 8px;">No movies found</h3>
+      <p style="color: var(--text-muted); margin-bottom: 20px;">Try searching for a different title or clearing your active filters.</p>
+      <button onclick="resetFilters()" class="btn btn-secondary">Reset Filters</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><span class="logo-brand">CINEPHILIC</span></a>
+          <p>Your ultimate destination for discovering cinema and reserving premium seats.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="movies.html">Movies</a></li>
+            <li><a href="theatres.html">Theatres</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="auth.html?mode=login">Sign In</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="info.html">FAQ Center</a></li>
+            <li><a href="info.html">Terms & Policies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Cinephilic Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/movies-data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/movies.js"></script>
+</body>
+</html>
