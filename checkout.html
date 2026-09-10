@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout & Payment - Cinephilic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/checkout.css">
@@ -19,7 +21,9 @@
         </svg>
         <span class="logo-brand">CINEPHILIC</span>
       </a>
-      <span style="font-weight: 700; color: var(--accent-gold);">🔒 Secure Checkout</span>
+      <span style="font-weight: 700; color: var(--accent-gold); display: flex; align-items: center; gap: 6px;">
+        <span>🔒</span> 256-Bit SSL Secure Checkout
+      </span>
     </div>
   </header>
 
@@ -28,53 +32,107 @@
       <!-- Payment Details Column -->
       <div>
         <div class="checkout-card">
-          <h3>Payment Method</h3>
-          <div class="payment-methods">
-            <div class="payment-option active">
-              <input type="radio" name="pay-method" checked>
-              <div>
+          <h3>1. Choose Payment Method</h3>
+          <div class="payment-methods" id="payment-methods-group">
+            <label class="payment-option active" for="pay-card">
+              <input type="radio" id="pay-card" name="pay-method" value="card" checked>
+              <div style="flex: 1;">
                 <strong>Credit / Debit Card</strong>
-                <p style="font-size: 0.82rem; color: var(--text-muted);">Visa, MasterCard, RuPay</p>
+                <p style="font-size: 0.82rem; color: var(--text-muted);">Visa, MasterCard, RuPay, Amex</p>
+              </div>
+              <span style="font-size: 1.4rem;">💳</span>
+            </label>
+
+            <label class="payment-option" for="pay-upi">
+              <input type="radio" id="pay-upi" name="pay-method" value="upi">
+              <div style="flex: 1;">
+                <strong>UPI Instant Payment</strong>
+                <p style="font-size: 0.82rem; color: var(--text-muted);">Google Pay, PhonePe, Paytm, BHIM</p>
+              </div>
+              <span style="font-size: 1.4rem;">📱</span>
+            </label>
+
+            <label class="payment-option" for="pay-netbanking">
+              <input type="radio" id="pay-netbanking" name="pay-method" value="netbanking">
+              <div style="flex: 1;">
+                <strong>Netbanking</strong>
+                <p style="font-size: 0.82rem; color: var(--text-muted);">HDFC, ICICI, SBI, Axis & all major banks</p>
+              </div>
+              <span style="font-size: 1.4rem;">🏦</span>
+            </label>
+          </div>
+
+          <!-- Dynamic Method Input Fields -->
+          <div id="card-fields" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-color);">
+            <div class="form-group">
+              <label>Card Number</label>
+              <input type="text" class="form-control" placeholder="4532 •••• •••• 8921" maxlength="19" value="4532 8892 1092 8921">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+              <div class="form-group">
+                <label>Expiry Date</label>
+                <input type="text" class="form-control" placeholder="MM/YY" maxlength="5" value="08/28">
+              </div>
+              <div class="form-group">
+                <label>CVV / CVC</label>
+                <input type="password" class="form-control" placeholder="•••" maxlength="4" value="882">
               </div>
             </div>
-            <div class="payment-option">
-              <input type="radio" name="pay-method">
-              <div>
-                <strong>UPI Instant Payment</strong>
-                <p style="font-size: 0.82rem; color: var(--text-muted);">GPay, PhonePe, Paytm</p>
-              </div>
+          </div>
+
+          <div id="upi-fields" style="display: none; margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-color);">
+            <div class="form-group">
+              <label>Virtual Payment Address (UPI ID)</label>
+              <input type="text" id="upi-id-input" class="form-control" placeholder="username@okhdfcbank or yourname@paytm">
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-muted);">You will receive a payment request on your UPI app to authorize.</p>
+          </div>
+
+          <div id="netbanking-fields" style="display: none; margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-color);">
+            <div class="form-group">
+              <label>Select Bank</label>
+              <select class="form-control" style="background: var(--bg-card);">
+                <option>HDFC Bank</option>
+                <option>State Bank of India (SBI)</option>
+                <option>ICICI Bank</option>
+                <option>Axis Bank</option>
+                <option>Kotak Mahindra Bank</option>
+              </select>
             </div>
           </div>
         </div>
 
         <div class="checkout-card">
-          <h3>Promo Code & Discounts</h3>
-          <p style="font-size: 0.88rem; color: var(--text-muted);">Use promo code <strong>CINE50</strong> for ₹50 off</p>
+          <h3>2. Promo Code & Offers</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Use promo code <strong style="color: var(--accent-gold);">CINE50</strong> for ₹50 instant discount</p>
           <div class="promo-wrap">
             <input type="text" id="promo-input" class="form-control" placeholder="Enter promo code (e.g. CINE50)">
             <button id="apply-promo-btn" class="btn btn-secondary">Apply</button>
           </div>
+          <div id="promo-status" style="margin-top: 8px; font-size: 0.85rem;"></div>
         </div>
       </div>
 
       <!-- Order Summary Column -->
       <div>
-        <div class="checkout-card">
+        <div class="checkout-card" style="position: sticky; top: 95px;">
           <h3>Order Overview</h3>
-          <h4 id="checkout-movie-title" style="font-size: 1.2rem; margin-bottom: 4px;">Movie Title</h4>
+          <h4 id="checkout-movie-title" style="font-size: 1.3rem; margin-bottom: 4px; font-weight: 800;">Movie Title</h4>
           <p id="checkout-show-info" style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px;">Cinema • Showtime</p>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">Seats: <strong id="checkout-seats" style="color: var(--accent-red);">Selected Seats</strong></p>
+          <p style="font-size: 0.95rem; margin-bottom: 20px; background: rgba(0,0,0,0.2); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color);">
+            Seats: <strong id="checkout-seats" style="color: var(--accent-red);">Selected Seats</strong>
+          </p>
 
           <div class="price-row">
             <span>Tickets Subtotal</span>
-            <span id="checkout-subtotal">₹0</span>
+            <span id="checkout-subtotal" style="color: #fff; font-weight: 600;">₹0</span>
           </div>
           <div class="price-row">
-            <span>Convenience Fee</span>
-            <span id="checkout-fee">₹30</span>
+            <span>Convenience Fee & Taxes</span>
+            <span id="checkout-fee" style="color: #fff; font-weight: 600;">₹30</span>
           </div>
-          <div class="price-row" id="checkout-discount-row" style="display: none; color: var(--accent-gold);">
-            <span>Promo Discount</span>
+          <div class="price-row" id="checkout-discount-row" style="display: none; color: var(--accent-gold); font-weight: 700;">
+            <span>Promo Discount (CINE50)</span>
             <span id="checkout-discount">-₹0</span>
           </div>
           <div class="price-row total">
@@ -82,13 +140,19 @@
             <span id="checkout-total">₹0</span>
           </div>
 
-          <button id="pay-now-btn" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 14px;">Confirm & Pay Now</button>
+          <button id="pay-now-btn" class="btn btn-primary" style="width: 100%; margin-top: 25px; padding: 14px; font-size: 1.05rem;">
+            Confirm & Pay ₹<span id="pay-btn-amount">0</span>
+          </button>
+          
+          <div style="text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--text-muted);">
+            By clicking confirm, you agree to Cinephilic terms of ticketing.
+          </div>
         </div>
       </div>
     </div>
   </main>
 
-  <script src="js/tmdb.js"></script>
+  <script src="js/movies-data.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/checkout.js"></script>
 </body>

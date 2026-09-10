@@ -8,23 +8,31 @@ const THEATRES = [
 
 document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
-  const movieId = params.get('movieId') || 550;
-  const movie = await TMDBService.getMovieById(movieId);
+  const movieId = params.get('movieId') || params.get('id');
+  
+  const movie = await MovieService.getMovieById(movieId);
 
-  renderMovieBanner(movie);
-  renderTheatres(THEATRES, movieId);
+  if (movie) {
+    renderMovieBanner(movie);
+    renderTheatres(THEATRES, movie.id);
+  }
 });
 
 function renderMovieBanner(movie) {
   const banner = document.getElementById('selected-movie-banner');
+  const fallbackImg = 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500';
+
   if (banner && movie) {
     banner.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 20px; background: var(--bg-card); padding: 20px; border-radius: var(--radius); border: 1px solid var(--border-color); margin-top: 25px; margin-bottom: 30px;">
-        <img src="${movie.poster_path}" style="width: 60px; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover;">
-        <div>
+      <div style="display: flex; align-items: center; gap: 20px; background: var(--bg-card); padding: 20px; border-radius: var(--radius); border: 1px solid var(--border-color); margin-top: 25px; margin-bottom: 30px; flex-wrap: wrap;">
+        <img src="${movie.poster_path}" alt="${movie.title}" style="width: 70px; border-radius: 8px; aspect-ratio: 2/3; object-fit: cover;" onerror="this.src='${fallbackImg}'">
+        <div style="flex: 1;">
           <span class="badge badge-red" style="margin-bottom: 6px;">Step 1: Select Cinema</span>
-          <h2 style="font-size: 1.4rem;">${movie.title}</h2>
-          <p style="color: var(--text-muted); font-size: 0.88rem;">${movie.genre.join(', ')} • ${movie.runtime}</p>
+          <h2 style="font-size: 1.5rem; font-weight: 800; margin: 2px 0;">${movie.title}</h2>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">${movie.genre.join(', ')} • ${movie.language} • ${movie.runtime}</p>
+        </div>
+        <div>
+          <a href="movies.html" class="btn btn-outline" style="font-size: 0.82rem; padding: 6px 12px;">Change Movie</a>
         </div>
       </div>
     `;
@@ -44,7 +52,7 @@ function renderTheatres(theatres, movieId) {
           <span class="facility-tag">${t.format}</span>
         </div>
       </div>
-      <a href="shows.html?movieId=${movieId}&theatreId=${t.id}" class="btn btn-primary">Select Showtimes</a>
+      <a href="shows.html?movieId=${movieId}&theatreId=${t.id}" class="btn btn-primary">Select Showtimes →</a>
     </div>
   `).join('');
 }

@@ -1,27 +1,31 @@
 /* Cinephilic - Interactive Seat Selection Script (js/seats.js) */
 let selectedSeats = [];
-let ticketPrice = 220;
+let ticketPrice = 250;
 let currentMovie = null;
 let currentShowTime = "05:15 PM";
 
 document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
-  const movieId = params.get('movieId') || 550;
-  ticketPrice = parseInt(params.get('price')) || 220;
+  const movieId = params.get('movieId') || params.get('id');
+  ticketPrice = parseInt(params.get('price'), 10) || 250;
   currentShowTime = params.get('time') || "05:15 PM";
 
-  currentMovie = await TMDBService.getMovieById(movieId);
-  renderSeatsHeader(currentMovie, currentShowTime);
-  generateSeatingGrid();
-  initProceedButton(movieId);
+  currentMovie = await MovieService.getMovieById(movieId);
+  if (currentMovie) {
+    renderSeatsHeader(currentMovie, currentShowTime);
+    generateSeatingGrid();
+    initProceedButton(currentMovie.id);
+  }
 });
 
 function renderSeatsHeader(movie, showTime) {
   const banner = document.getElementById('seats-movie-info');
   if (banner && movie) {
     banner.innerHTML = `
-      <h2 style="font-size: 1.3rem; font-weight: 800;">${movie.title}</h2>
-      <p style="color: var(--text-muted); font-size: 0.88rem;">Cinephilic IMAX • Today at ${showTime}</p>
+      <div style="text-align: right;">
+        <h2 style="font-size: 1.2rem; font-weight: 800;">${movie.title}</h2>
+        <p style="color: var(--text-muted); font-size: 0.82rem;">Cinephilic IMAX • ${showTime}</p>
+      </div>
     `;
   }
 }
@@ -39,7 +43,7 @@ function generateSeatingGrid() {
     for (let i = 1; i <= seatsPerRow; i++) {
       const seatId = `${row}${i}`;
       const isOccupied = occupiedSeats.includes(seatId);
-      seatsHTML += `<button class="seat ${isOccupied ? 'occupied' : ''}" data-seat="${seatId}">${i}</button>`;
+      seatsHTML += `<button class="seat ${isOccupied ? 'occupied' : ''}" data-seat="${seatId}" ${isOccupied ? 'disabled' : ''}>${i}</button>`;
     }
     return `
       <div class="seat-row">
@@ -80,21 +84,24 @@ function updateBookingBar() {
   if (btn) {
     btn.disabled = selectedSeats.length === 0;
     btn.style.opacity = selectedSeats.length === 0 ? '0.5' : '1';
+    btn.style.cursor = selectedSeats.length === 0 ? 'not-allowed' : 'pointer';
   }
 }
 
 function initProceedButton(movieId) {
   const btn = document.getElementById('proceed-checkout-btn');
   btn?.addEventListener('click', () => {
-    if (selectedSeats.length === 0) return alert('Please select at least one seat.');
+    if (selectedSeats.length === 0) return alert('Please select at least one seat to proceed.');
 
     const bookingData = {
       movie: currentMovie,
       showTime: currentShowTime,
+      theatre: 'Cinephilic IMAX Plaza',
       seats: selectedSeats,
       ticketPrice: ticketPrice,
       totalAmount: selectedSeats.length * ticketPrice,
-      bookingRef: 'CP' + Math.floor(100000 + Math.random() * 900000)
+      bookingRef: 'CP' + Math.floor(100000 + Math.random() * 900000),
+      bookingDate: new Date().toLocaleDateString()
     };
 
     localStorage.setItem('cinephilic_current_booking', JSON.stringify(bookingData));

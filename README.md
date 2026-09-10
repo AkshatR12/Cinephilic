@@ -1,60 +1,102 @@
-# Cinephilic – A Modern, Interactive Movie Ticketing Platform
+# Cinephilic – Movie Ticketing & Discovery Platform
 
-Cinephilic is a client-side movie ticket booking web app designed to provide a fast, immersive, and visually stunning experience — without requiring a complex backend setup. Everything runs seamlessly in your browser with real-time UI interactions, smooth micro-animations, and dynamic seat reservation logic.
-
-Cinephilic ships as two connected experiences:
-1. An immersive, hero-driven landing page that showcases trending movies, trailers, and event highlights with scroll-driven animations.
-2. A fully interactive booking & authentication portal (accessible via "Book Tickets" / "Sign In"), featuring dynamic seat selection, instant price calculations, and local user sessions built with vanilla JavaScript (no page reloads).
+**Cinephilic** is a movie ticket booking platform built with HTML5, CSS3, Vanilla JavaScript, and a Node.js Express + MySQL backend.
 
 ---
 
-## Features
+## Key Features
 
-* **Cinematic Hero Page** – Engaging hero banner featuring animated action buttons, glowing badges, and smooth entrance reveals.
-* **Dynamic Movie Catalog** – Interactive movie grid displaying genre tags, duration, ratings, and instant booking overlays.
-* **Interactive Seat Selection** – Visual theater screen layout allowing users to select/deselect seats with dynamic total price computation.
-* **Glassmorphism Auth Suite** – Sleek, modern Login and Registration forms with smooth tab toggles and form validation.
-* **LocalStorage Persistence** – Your booked tickets, user profiles, and active sessions stay saved across page refreshes.
-* **Fully Responsive** – Optimized and tested across desktop, tablet, and mobile viewport sizes.
-* **Micro-Animations & Feedback** – Instant UI feedback on button hover, form submit, and scroll triggers for an exciting visual feel.
+1. **Self-Contained Movie Catalog**
+   - High-resolution posters and cinema backdrops.
+   - Multilingual catalog (English, Hindi, and more).
+   - Filter by genre, language, status (*Now Showing* vs *Coming Soon*), and sort by rating/title/price.
+   - Expanded, immersive movie descriptions with lead director and format details.
+
+2. **Cast & Crew with Real Photos**
+   - Detailed movie information pages displaying starring cast photos, actor names, and character roles.
+   - Embedded official YouTube trailer modals.
+
+3. **Seamless Multi-Step Booking Funnel**
+   - **Step 1: Theatres**: Select cinema format (IMAX 4K, 4DX, Dolby Atmos, Royal Cinema).
+   - **Step 2: Showtimes**: Pick dates and screening time slots.
+   - **Step 3: Seats**: Interactive real-time seating map with dynamic price calculations.
+   - **Step 4: Checkout**: Choose payment method (Credit/Debit Card, UPI, Netbanking) and apply promo discounts (e.g. `CINE50`).
+   - **Step 5: Confirmation & QR E-Ticket**: Instant gate-scannable QR Code generation with printable E-Ticket.
+
+4. **MySQL Authentication & Booking Backend**
+   - User Registration & Login with `bcryptjs` password hashing.
+   - MySQL database persistence for users and booked tickets (`cinephilic_db`).
+   - Automatic graceful fallback to local session if MySQL server is offline.
+
+5. **User Profile & Booking History**
+   - View all confirmed bookings with QR codes and detailed seat metadata.
+   - 1-click ticket cancellation with instant refund processing.
+
+6. **Information & Help Center**
+   - Dedicated `info.html` page with interactive FAQ accordion, cinema format specifications, booking guide, and customer support desk.
 
 ---
 
-## Technology Used
+## Project Structure
 
-* **HTML5** – Semantic layout structuring
-* **CSS3** – Custom properties (design tokens), Grid/Flexbox, dynamic animations & glassmorphism backdrop filters
-* **Vanilla JavaScript (ES6+)** – DOM manipulation, event handling, dynamic UI rendering (no frameworks, no build tools)
-* **Browser LocalStorage** – Client-side persistence layer for sessions and ticket bookings
-* **FontAwesome Icons** – Vector icons for sleek navigation and action prompts
-
-> **Note:** No React, Vue, Angular, jQuery, Bootstrap, Tailwind, backend, or external database is used anywhere in this project.
+```
+Cinephilic/
+├── backend/
+│   ├── db.js             # MySQL connection pool configuration
+│   ├── server.js         # Express REST API (Auth & Bookings)
+│   ├── schema.sql        # MySQL Database schema & seed data
+│   └── package.json      # Backend dependencies
+├── css/
+│   ├── style.css         # Master design system & tokens
+│   ├── home.css          # Homepage & grid styling
+│   ├── details.css       # Movie details & cast avatars
+│   ├── booking.css       # Theatres, showtimes & seat selection
+│   ├── checkout.css      # Checkout cards & printable E-Ticket
+│   └── profile.css       # User profile & booking history
+├── js/
+│   ├── movies-data.js    # Curated movie catalog & MovieService
+│   ├── auth.js           # MySQL auth integration & dynamic navbar state
+│   ├── home.js           # Hero & homepage movie rendering
+│   ├── movies.js         # Catalog filtering & language matching
+│   ├── details.js        # Cast rendering & trailer modal
+│   ├── theatres.js       # Multiplex selection
+│   ├── shows.js          # Date tabs & showtime slots
+│   ├── seats.js          # Interactive seating grid
+│   ├── checkout.js       # Payment radios, promo codes & MySQL sync
+│   └── profile.js        # Profile rendering & QR ticket history
+├── index.html            # Homepage
+├── movies.html           # Discover Movies Catalog
+├── movie-details.html    # Movie Info & Cast
+├── theatres.html         # Select Cinema
+├── shows.html            # Select Showtime
+├── seats.html            # Seating Grid
+├── checkout.html         # Payment & Promo
+├── confirmation.html     # E-Ticket & Dynamic QR Code
+├── info.html             # Help Center & FAQs
+├── auth.html             # Login & Register
+└── profile.html          # My Bookings & Profile
+```
 
 ---
 
-## How to Run the Project
+## How to Set Up and Run
 
-No installation and no build step required.
-1. Download / clone the project folder.
-2. Open `index.html` in any modern browser (Chrome, Firefox, Edge, Safari).
-3. That's it – the whole app runs client-side.
+### 1. MySQL Database Setup
+1. Open your MySQL client (e.g. **phpMyAdmin**, **MySQL Workbench**, or MySQL CLI).
+2. Import / Run the SQL script from `backend/schema.sql`:
+   ```sql
+   source backend/schema.sql;
+   ```
+   This will create the `cinephilic_db` database, `users`, `movies`, and `bookings` tables.
 
----
+### 2. Run the Node.js Backend Server
+1. Navigate to the `backend` folder:
+   ```bash
+   cd backend
+   npm install
+   node server.js
+   ```
+2. The server will start on `http://localhost:5000/api`.
 
-## How LocalStorage Works in Cinephilic
-
-Cinephilic stores your bookings and session data under key LocalStorage entries:
-
-### `cinephilicBookings`
-The value is a JSON array of booking objects, for example:
-
-```json
-[
-  {
-    "bookingId": "CIN-892301",
-    "movieTitle": "Cyberpunk 2099",
-    "seats": ["A3", "A4"],
-    "totalAmount": 500,
-    "bookingDate": "2026-08-05"
-  }
-]
+### 3. Open the Frontend Application
+Simply open `index.html` in any web browser, or serve it with VS Code Live Server / any HTTP server.
