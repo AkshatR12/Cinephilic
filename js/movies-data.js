@@ -30,7 +30,7 @@ const MOVIE_CATALOG = [
       {
         name: "Ali Fazal",
         character: "Govind 'Guddu' Pandit",
-        photo: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ali_fazil.jpg"
+        photo: "https://www.google.com/imgres?q=ali%20fazal&imgurl=https%3A%2F%2Fwww.bollywoodhungama.com%2Fwp-content%2Fuploads%2F2020%2F10%2FEXCLUSIVE-Ali-Fazal-reveals-what-he%25E2%2580%2599d-say-to-Mirzapur-2-characters-if-he-ever-met-them-in-real-life-1.jpg&imgrefurl=https%3A%2F%2Fwww.bollywoodhungama.com%2Fnews%2Ffeatures%2Fexclusive-ali-fazal-reveals-hed-say-mirzapur-2-characters-ever-met-real-life%2F&docid=iCK1szfvPVg2JM&tbnid=tInHmJ5cOsjWhM&vet=12ahUKEwieoIOu-YGXAxUqjOEIHSnOFfIQnPAOegUI1gEQAA..i&w=620&h=450&hcb=2&ved=2ahUKEwieoIOu-YGXAxUqjOEIHSnOFfIQnPAOegUI1gEQAA"
       },
       {
         name: "Divyenndu",
