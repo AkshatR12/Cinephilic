@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Seats - Cinephilic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        <span class="logo-brand">CINEPHILIC</span>
+      </a>
+      <div id="seats-movie-info"></div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 25px;">
+    <!-- Seat Status Legend -->
+    <div class="seat-legend">
+      <div class="legend-item"><div class="seat"></div> Available</div>
+      <div class="legend-item"><div class="seat seat-recliner"></div> VIP Recliner (Gold)</div>
+      <div class="legend-item"><div class="seat selected"></div> Selected</div>
+      <div class="legend-item"><div class="seat occupied"></div> Reserved</div>
+    </div>
+
+    <!-- Curved Glowing Screen Display -->
+    <div class="screen-wrapper">
+      <div class="screen-arch"></div>
+      <div class="screen-text">ALL EYES THIS WAY • AUDITORIUM SCREEN 1</div>
+    </div>
+
+    <!-- 3-Tier Seating Grid (250+ Seats) -->
+    <div class="seats-container" id="seats-container"></div>
+  </main>
+
+  <!-- Sticky Booking Summary Bar -->
+  <div class="booking-bar">
+    <div class="container booking-bar-inner">
+      <div>
+        <div style="font-size: 0.82rem; color: #94a3b8;">Selected Seats: <span id="selected-seats-list" style="color: #fff; font-weight: 800; background: rgba(255,42,95,0.15); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(255,42,95,0.3);">None</span></div>
+        <div class="booking-price"><span id="selected-count">0</span> Ticket(s) • <span id="total-price">₹0</span></div>
+      </div>
+      <button id="proceed-checkout-btn" class="btn btn-primary" disabled style="opacity: 0.5; border-radius: 12px; padding: 12px 28px; font-weight: 800;">
+        Proceed to Pay →
+      </button>
+    </div>
+  </div>
+
+  <script src="js/movies-data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seats.js"></script>
+</body>
+</html>
