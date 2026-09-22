@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmation - Cinephilic E-Ticket Pass</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <style>
+    @media print {
+      .navbar, .footer, .no-print { display: none !important; }
+      body { background: #fff !important; color: #000 !important; }
+      .parchment-ticket-card { transform: none !important; box-shadow: none !important; margin: 0 auto !important; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar no-print">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        <span class="logo-brand">CINEPHILIC</span>
+      </a>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="profile.html" class="btn btn-secondary">Dashboard</a>
+        <a href="index.html" class="btn btn-primary">Book Another</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div style="text-align: center; margin-top: 35px;" class="no-print">
+      <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(74, 222, 128, 0.15); border: 2px solid #4ade80; display: inline-flex; align-items: center; justify-content: center; color: #4ade80; margin-bottom: 8px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <h1 style="font-size: 2.2rem; font-weight: 800; margin-top: 8px; color: #fff;">Booking Confirmed!</h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem;">Your digital cinema ticket is ready. Present your scannable Cinephilic E-Ticket at turnstile gate entry.</p>
+    </div>
+
+    <!-- Replica Vintage Paper Ticket Stub Display (3D Tilted) -->
+    <div class="parchment-ticket-wrapper">
+      <div class="parchment-ticket-card">
+        <div class="parchment-inner-frame">
+          
+          <!-- Left Main Ticket Body -->
+          <div class="parchment-main-body">
+            <!-- Top Bar -->
+            <div class="parchment-top-bar">
+              <div class="parchment-brand">
+                <span>CINEPHILIC CINEMA</span>
+              </div>
+              <div class="parchment-slogan">MOVIES • CINEMA • TOGETHER</div>
+            </div>
+
+            <!-- Content Row: Poster + Title + Details -->
+            <div class="parchment-content-row">
+              <img id="ticket-poster-img" src="attributes/posters/mirzapur.jpg" alt="Poster" class="parchment-poster-thumb" onerror="this.src='https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=300'">
+              
+              <div class="parchment-info-col">
+                <h2 id="ticket-movie-title" class="parchment-movie-title">Mirzapur: The Movie</h2>
+                <div id="ticket-cinema" class="parchment-cinema-location">CINEPHILIC IMAX 4K - GRAND PLAZA</div>
+
+                <div class="parchment-details-grid">
+                  <div class="parchment-field">
+                    <label>DATE & SHOWTIME</label>
+                    <p id="ticket-time">20/9/2026 • 10:30 AM</p>
+                  </div>
+                  <div class="parchment-field">
+                    <label>RESERVED SEATS</label>
+                    <p><span id="ticket-seats" class="parchment-seat-badge">C9, C10</span></p>
+                  </div>
+                  <div class="parchment-field">
+                    <label>AUDITORIUM SCREEN</label>
+                    <p id="ticket-screen">Screen 1 (IMAX 3D)</p>
+                  </div>
+                  <div class="parchment-field">
+                    <label>AMOUNT PAID</label>
+                    <p id="ticket-amount">₹670 (Paid)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="parchment-bottom-bar" id="ticket-bottom-loc">
+              CINEPHILIC CINEMA • GRAND PLAZA
+            </div>
+          </div>
+
+          <!-- Vertical Dashed Tear Line -->
+          <div class="parchment-dashed-tear"></div>
+
+          <!-- Right QR Stub -->
+          <div class="parchment-stub-right">
+            <div>
+              <div class="parchment-eticket-badge">E-TICKET</div>
+              <div class="parchment-ref-code" id="ticket-ref">REF: CNV-447254</div>
+            </div>
+
+            <div class="parchment-qr-box" id="qr-container">
+              <img id="ticket-qr-img" src="" alt="Gate QR Code" class="parchment-qr-img">
+            </div>
+
+            <div>
+              <div class="parchment-scan-label">SCAN AT ENTRANCE</div>
+              <div class="parchment-script-signature">Enjoy the Show</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="text-align: center; margin-bottom: 55px; display: flex; gap: 15px; justify-content: center;" class="no-print">
+      <button onclick="window.print()" class="btn btn-secondary" style="padding: 12px 26px; border-radius: 30px;">Print E-Ticket</button>
+      <a href="profile.html" class="btn btn-outline" style="padding: 12px 26px; border-radius: 30px;">View in My Bookings</a>
+      <a href="index.html" class="btn btn-primary" style="padding: 12px 26px; border-radius: 30px;">Back to Home</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer no-print">
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Cinephilic</p>
+    </div>
+  </footer>
+
+  <script src="js/movies-data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = localStorage.getItem('cinephilic_last_confirmed');
+      if (!data) {
+        // Fallback demo ticket matching user reference
+        document.getElementById('ticket-movie-title').textContent = 'Mirzapur: The Movie';
+        document.getElementById('ticket-ref').textContent = 'REF: CNV-447254';
+        document.getElementById('ticket-cinema').textContent = 'CINEPHILIC IMAX 4K - GRAND PLAZA';
+        document.getElementById('ticket-time').textContent = '20/9/2026 • 10:30 AM';
+        document.getElementById('ticket-seats').textContent = 'C9, C10';
+        document.getElementById('ticket-amount').textContent = '₹670 (Paid)';
+        document.getElementById('ticket-poster-img').src = 'assets/images/posters/mirzapur.jpg';
+        document.getElementById('ticket-bottom-loc').textContent = 'CINEPHILIC CINEMA • GRAND PLAZA';
+        generateQR('CINEPHILIC-REF:CNV-447254|MOVIE:Mirzapur The Movie|SEATS:C9,C10|TIME:10:30 AM');
+        return;
+      }
+
+      const ticket = JSON.parse(data);
+      const movieObj = ticket.movie || { title: 'Mirzapur: The Movie', poster_path: 'assets/images/posters/mirzapur.jpg' };
+      
+      document.getElementById('ticket-movie-title').textContent = movieObj.title || ticket.movieTitle || 'Mirzapur: The Movie';
+      document.getElementById('ticket-ref').textContent = `REF: ${ticket.bookingRef || 'CNV-447254'}`;
+      document.getElementById('ticket-cinema').textContent = (ticket.theatre || 'CINEPHILIC IMAX 4K - GRAND PLAZA').toUpperCase();
+      document.getElementById('ticket-time').textContent = `${ticket.bookingDate || 'Today'} • ${ticket.showTime || '10:30 AM'}`;
+      document.getElementById('ticket-seats').textContent = Array.isArray(ticket.seats) ? ticket.seats.join(', ') : (ticket.seats || 'C9, C10');
+      document.getElementById('ticket-amount').textContent = `₹${ticket.finalAmount || ticket.totalAmount || 670} (Paid)`;
+      document.getElementById('ticket-bottom-loc').textContent = `CINEPHILIC CINEMA • ${(ticket.theatre || 'GRAND PLAZA').toUpperCase()}`;
+      
+      const posterPath = movieObj.poster_path || ticket.poster || 'assets/images/posters/mirzapur.jpg';
+      document.getElementById('ticket-poster-img').src = posterPath;
+
+      const seatsStr = Array.isArray(ticket.seats) ? ticket.seats.join(',') : (ticket.seats || 'C9,C10');
+      const qrPayload = `CINEPHILIC-REF:${ticket.bookingRef || 'CNV-447254'}|MOVIE:${movieObj.title || 'Movie'}|SEATS:${seatsStr}|TIME:${ticket.showTime || '10:30 AM'}`;
+      generateQR(qrPayload);
+    });
+
+    function generateQR(payload) {
+      const qrImg = document.getElementById('ticket-qr-img');
+      const encoded = encodeURIComponent(payload);
+      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encoded}&color=1f1a17&bgcolor=ffffff`;
+      qrImg.onerror = function() {
+        drawCanvasQR(payload);
+      };
+    }
+
+    function drawCanvasQR(text) {
+      const container = document.getElementById('qr-container');
+      if (!container) return;
+      container.innerHTML = `
+        <div style="width: 140px; height: 140px; background: #1f1a17; color: #ebdcc1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: monospace; font-size: 0.7rem; text-align: center; border-radius: 8px; padding: 8px;">
+          <div>QR VERIFIED</div>
+          <div style="font-size: 0.62rem; color: #ffb400; margin-top: 2px;">${text.split('|')[0]}</div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

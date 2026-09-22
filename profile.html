@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cine Dashboard & Profile - Cinephilic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        <span class="logo-brand">CINEPHILIC</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="movies.html">Movies</a>
+        <a href="theatres.html">Theatres</a>
+        <a href="info.html">Help & Info</a>
+        <a href="profile.html" class="active">Dashboard</a>
+      </nav>
+      <div class="nav-actions">
+        <!-- Dynamically populated by js/auth.js -->
+        <a href="auth.html?mode=login" class="btn btn-secondary">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Dashboard Header Card -->
+    <div class="dashboard-header-card">
+      <div class="dashboard-user-meta">
+        <!-- Avatar Wrapper with Glowing Ring & Online Dot -->
+        <div class="avatar-display-wrapper">
+          <div class="avatar-glow-ring"></div>
+          <img id="user-avatar-img" src="assets/images/avatars/avatar_1.png" alt="User Avatar" class="dashboard-avatar-img">
+          <span class="status-indicator-dot" title="Active Cinephile Online"></span>
+          <button type="button" class="change-avatar-floating-btn" onclick="switchTabToSecurity()" title="Change Avatar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          </button>
+        </div>
+
+        <div class="dashboard-info-details">
+          <div class="user-name-title-row">
+            <h2 id="user-name">User Profile</h2>
+            <span class="rank-pill">CINEPHILE MEMBER</span>
+          </div>
+          <p id="user-email" class="user-email-text">
+            <span id="user-email-val"></span> <span id="user-phone-divider">•</span> <span id="user-phone"></span>
+          </p>
+          <div class="badges-row">
+            <span class="badge badge-gold" id="user-badge">VIP CINEPHILE MEMBER</span>
+            <span class="badge badge-red" id="user-location-badge">Delhi NCR</span>
+            <span class="badge badge-purple">IMAX & Sci-Fi Squad</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats Bar -->
+      <div class="dashboard-stats-row">
+        <div class="stat-pill-card">
+          <div class="stat-icon-bg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path></svg>
+          </div>
+          <div>
+            <div class="stat-val" id="stat-total-passes">3</div>
+            <div class="stat-lbl">Total Passes</div>
+          </div>
+        </div>
+        <div class="stat-pill-card">
+          <div class="stat-icon-bg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+          </div>
+          <div>
+            <div class="stat-val" id="stat-active-shows">1</div>
+            <div class="stat-lbl">Active Shows</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Category Tabs Bar -->
+    <div class="dashboard-tabs-bar">
+      <button class="dash-tab-btn active" data-tab="active">
+        Active Passes <span class="tab-badge" id="badge-count-active">1</span>
+      </button>
+      <button class="dash-tab-btn" data-tab="memories">
+        Booking History <span class="tab-badge" id="badge-count-memories">1</span>
+      </button>
+      <button class="dash-tab-btn" data-tab="cancelled">
+        Cancelled Passes <span class="tab-badge" id="badge-count-cancelled">1</span>
+      </button>
+      <button class="dash-tab-btn" data-tab="security">
+        Edit Profile & Avatars
+      </button>
+    </div>
+
+    <!-- TAB VIEW 1: ACTIVE PASSES -->
+    <div id="active-passes-view" class="dash-view-section active">
+      <div class="section-title-row">
+        <div>
+          <h3 class="dash-section-heading">Your Upcoming Active Movie Passes</h3>
+          <p class="dash-section-sub">Present your digital pass QR code at the theater entrance</p>
+        </div>
+        <a href="movies.html" class="btn btn-primary book-new-btn">+ Book New Movie</a>
+      </div>
+      <div class="booking-history-list" id="active-passes-list">
+      </div>
+    </div>
+
+    <!-- TAB VIEW 2: BOOKING HISTORY (PAST SHOWS) -->
+    <div id="memories-passes-view" class="dash-view-section">
+      <div class="section-title-row">
+        <div>
+          <h3 class="dash-section-heading">Booking History & Past Shows</h3>
+          <p class="dash-section-sub">Archive of all cinema blockbusters you watched on Cinephilic</p>
+        </div>
+      </div>
+      <div class="booking-history-list" id="memories-passes-list"></div>
+    </div>
+
+    <!-- TAB VIEW 3: CANCELLED PASSES -->
+    <div id="cancelled-passes-view" class="dash-view-section">
+      <div class="section-title-row">
+        <div>
+          <h3 class="dash-section-heading">Cancelled Ticket History</h3>
+          <p class="dash-section-sub">Full refunds automatically processed for cancelled passes</p>
+        </div>
+      </div>
+      <div class="booking-history-list" id="cancelled-passes-list"></div>
+    </div>
+
+    <!-- TAB VIEW 4: EDIT PROFILE & AVATAR -->
+    <div id="security-view" class="dash-view-section">
+      <div class="customize-profile-container">
+        <!-- Section Header -->
+        <div class="customize-title-block">
+          <span class="sub-header-red">CUSTOMIZE YOUR PROFILE</span>
+          <h2 class="main-header-title">EDIT PROFILE & AVATAR</h2>
+        </div>
+
+        <!-- Main Form Card Container -->
+        <div class="edit-profile-card">
+
+          <!-- Avatar Chooser Box -->
+          <div class="avatar-chooser-box">
+            <div class="chooser-label">Choose Avatar or Upload Custom Picture:</div>
+
+            <!-- Active Profile Picture Live Header Bar -->
+            <div class="active-avatar-bar">
+              <div class="active-avatar-square-frame">
+                <img id="edit-avatar-preview-img" src="assets/images/avatars/avatar_1.png" alt="Active Avatar">
+              </div>
+              <div class="active-avatar-text-meta">
+                <div class="active-avatar-heading">Active Profile Picture</div>
+                <div class="active-avatar-subtext">Choose from presets below or upload from phone/pc folder.</div>
+              </div>
+            </div>
+
+            <!-- Clean Presets Horizontal Scrollbar -->
+            <div class="preset-avatars-row" id="avatars-grid-container">
+              <!-- Dynamically populated by js/profile.js -->
+            </div>
+
+            <!-- Custom Picture Upload Button -->
+            <div class="custom-upload-wrapper">
+              <input type="file" id="custom-avatar-upload-input" accept="image/*" style="display: none;" onchange="handleCustomAvatarUpload(event)">
+              <button type="button" class="btn-custom-upload" onclick="document.getElementById('custom-avatar-upload-input').click()">
+                <span class="upload-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                </span>
+                <span class="upload-text">Choose Picture from Phone / Computer Folder</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Profile Input Form -->
+          <form id="profile-custom-form" onsubmit="handleProfileSubmit(event)" class="profile-inputs-form">
+            <div class="form-group-custom">
+              <label>Full Name</label>
+              <input type="text" id="edit-user-name" class="form-input-custom" placeholder="Your Name" required>
+            </div>
+
+            <div class="form-group-custom">
+              <label>Official Gmail / Email</label>
+              <input type="email" id="edit-user-email" class="form-input-custom" placeholder="name@gmail.com" required>
+              <div class="input-helper-note">Updating email triggers 6-digit OTP confirmation to your Gmail.</div>
+            </div>
+
+            <div class="form-group-custom">
+              <label>Phone Number (WhatsApp / Mobile)</label>
+              <input type="tel" id="edit-user-phone" class="form-input-custom" placeholder="+919876543210" required>
+            </div>
+
+            <div class="form-row-two-col">
+              <div class="form-group-custom">
+                <label>Preferred City / Location</label>
+                <select id="edit-user-city" class="form-input-custom form-select-custom">
+                  <option value="Delhi NCR">Delhi NCR</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Bengaluru">Bengaluru</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                  <option value="Pune">Pune</option>
+                </select>
+              </div>
+
+              <div class="form-group-custom">
+                <label>Gender</label>
+                <select id="edit-user-gender" class="form-input-custom form-select-custom">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other / Secret</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-custom">
+              <label>Date of Birth (DOB)</label>
+              <input type="date" id="edit-user-dob" class="form-input-custom" value="2000-01-01">
+            </div>
+
+            <button type="submit" class="btn btn-primary save-profile-cta-btn">
+              Save Profile Changes
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 6-DIGIT OTP VERIFICATION MODAL -->
+  <div id="otp-verification-modal" class="otp-modal-overlay">
+    <div class="otp-modal-card">
+      <button onclick="closeOTPModal()" class="otp-close-btn">✕</button>
+
+      <div class="otp-shield-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--dash-accent-red)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      </div>
+      <h3 style="font-size: 1.45rem; font-weight: 800; color: #fff; margin-bottom: 6px;">OTP Authentication Required</h3>
+      <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.4;">We sent a 6-digit security verification code to your contact: <br><strong id="otp-target-contact" style="color: var(--dash-accent-gold, #ffd700);">user@example.com</strong></p>
+
+      <!-- Simulated OTP Hint Badge -->
+      <div class="simulated-otp-banner">
+        Demo Verification OTP Code: <span id="simulated-otp-code" style="letter-spacing: 2px;">492815</span>
+      </div>
+
+      <!-- 6-Digit OTP Inputs -->
+      <div class="otp-inputs-row" id="otp-inputs-container">
+        <input type="text" maxlength="1" class="otp-digit-input" autofocus>
+        <input type="text" maxlength="1" class="otp-digit-input">
+        <input type="text" maxlength="1" class="otp-digit-input">
+        <input type="text" maxlength="1" class="otp-digit-input">
+        <input type="text" maxlength="1" class="otp-digit-input">
+        <input type="text" maxlength="1" class="otp-digit-input">
+      </div>
+
+      <div style="margin-bottom: 22px; font-size: 0.84rem; color: #94a3b8;">
+        Resend OTP Code in <strong id="otp-timer-count" style="color: var(--dash-accent-red, #ff2a5f);">00:59</strong>
+      </div>
+
+      <button onclick="verifyOTPCode()" class="btn btn-primary" style="width: 100%; padding: 13px; font-weight: 800; border-radius: 12px; font-size: 1rem;">
+        Verify & Apply Profile Changes
+      </button>
+    </div>
+  </div>
+
+  <!-- Booking History Details Modal -->
+  <div id="past-details-modal" class="otp-modal-overlay" style="display:none;">
+    <div class="otp-modal-card" style="max-width: 520px; text-align: left; background: #0c0f1d; border: 1px solid rgba(255,42,95,0.35); border-radius: 20px; padding: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.85); position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+        <h3 style="margin: 0; font-size: 1.25rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+          Booking History Details
+        </h3>
+        <button onclick="closePastDetailsModal()" style="background: none; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; line-height: 1;">&times;</button>
+      </div>
+      
+      <div style="display: flex; gap: 16px; margin-bottom: 20px; background: rgba(255,255,255,0.04); padding: 14px; border-radius: 14px; align-items: center;">
+        <img id="past-modal-poster" src="attributes/posters/mirzapur.jpg" alt="Poster" style="width: 80px; aspect-ratio: 2/3; object-fit: cover; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);">
+        <div>
+          <span id="past-modal-status-badge" class="badge badge-gold" style="margin-bottom: 6px; display: inline-block;">COMPLETED</span>
+          <h4 id="past-modal-title" style="margin: 0 0 6px 0; font-size: 1.15rem; color: #fff; font-family: 'Outfit', sans-serif;">Movie Title</h4>
+          <div style="font-size: 0.85rem; color: #94a3b8;">Booking Ref: <strong id="past-modal-ref" style="color: #ff2a5f;">CNV-102938</strong></div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.92rem; color: #cbd5e1; background: rgba(15,21,38,0.7); padding: 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08);">
+        <div><strong>Booked For:</strong> <span id="past-modal-username" style="color: #fff; font-weight: 700;"></span></div>
+        <div><strong>Email ID:</strong> <span id="past-modal-email" style="color: #fff;"></span></div>
+        <div><strong>Phone Number:</strong> <span id="past-modal-phone" style="color: #fff;"></span></div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 6px 0;">
+        <div><strong>Cinema Theatre:</strong> <span id="past-modal-theatre">Cinephilic Luxe Multiplex</span></div>
+        <div><strong>Showtime & Date:</strong> <span id="past-modal-time">07:45 PM (12 Aug 2026)</span></div>
+        <div><strong>Reserved Seats:</strong> <strong id="past-modal-seats" style="color: var(--dash-accent-red, #ff2a5f);">E5, E6</strong> (2 Tickets)</div>
+        <div><strong>Total Paid:</strong> <strong id="past-modal-amount" style="color: var(--dash-accent-gold, #ffd700);">₹700 (Paid)</strong></div>
+      </div>
+
+      <div style="margin-top: 22px; text-align: right;">
+        <button onclick="closePastDetailsModal()" class="btn btn-secondary" style="padding: 10px 24px; border-radius: 20px; font-weight: 700;">Close Summary</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cancellation & Refund Initiated Modal -->
+  <div id="cancel-refund-modal" class="otp-modal-overlay">
+    <div class="otp-modal-card" style="max-width: 480px; text-align: center; background: linear-gradient(135deg, #121729 0%, #0c0f1b 100%); border: 1px solid rgba(255, 42, 95, 0.4); border-radius: 24px; padding: 32px; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 42, 95, 0.25); position: relative;">
+      <button onclick="closeCancelRefundModal()" class="otp-close-btn">✕</button>
+
+      <div style="width: 68px; height: 68px; margin: 0 auto 16px; border-radius: 50%; background: rgba(34, 197, 94, 0.15); border: 2px solid rgba(34, 197, 94, 0.5); display: flex; align-items: center; justify-content: center;">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+
+      <span class="badge" style="background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); font-size: 0.8rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">CANCELLATION SUCCESSFUL</span>
+
+      <h3 style="font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">Refund Initiated</h3>
+      
+      <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; margin-bottom: 20px;">
+        Refund initiated. Contact customer support for more info regarding your refund status and transaction details.
+      </p>
+
+      <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 14px 18px; margin-bottom: 24px; text-align: left; font-size: 0.88rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+          <span style="color: #94a3b8;">Booking Reference:</span>
+          <strong id="cancel-modal-ref" style="color: var(--dash-accent-red, #ff2a5f);">CNV-447254</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+          <span style="color: #94a3b8;">Movie:</span>
+          <strong id="cancel-modal-movie" style="color: #fff;">Mirzapur: The Movie</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #94a3b8;">Refund Amount:</span>
+          <strong id="cancel-modal-amount" style="color: var(--dash-accent-gold, #ffd700);">₹670</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a href="info.html#contact" class="btn btn-primary" style="padding: 13px 20px; font-weight: 800; border-radius: 14px; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          Contact Customer Support
+        </a>
+        <button onclick="closeCancelRefundModal()" class="btn btn-secondary" style="padding: 11px 20px; font-weight: 700; border-radius: 14px; font-size: 0.9rem;">
+          Dismiss
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="9"/>
+              <polygon points="10 8 16 12 10 16 10 8"/>
+            </svg>
+            <span class="logo-brand">CINEPHILIC</span>
+          </a>
+          <p>Your ultimate destination for discovering cinema and reserving premium seats.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="movies.html">Movies</a></li>
+            <li><a href="theatres.html">Theatres</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="auth.html?mode=login">Sign In</a></li>
+            <li><a href="profile.html">Dashboard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="info.html">FAQ Center</a></li>
+            <li><a href="info.html">Terms & Info</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Cinephilic</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/movies-data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>
