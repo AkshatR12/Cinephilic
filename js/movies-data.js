@@ -20,7 +20,7 @@ const MOVIE_CATALOG = [
     banner_path: "attributes/banner/mirzapur_banner.jpg",
     backdrop_path: "assets/images/luxury_red_cinema_seats_1789711598902.jpg",
     director: "Gurmmeet Singh",
-    trailer_key: "kv138wN1h4A",
+    trailer_key: "5vMWZhHPlaw",
     cast: [
       {
         name: "Pankaj Tripathi",
@@ -67,7 +67,7 @@ const MOVIE_CATALOG = [
     banner_path: "attributes/banner/haiwaan_banner.jpg",
     backdrop_path: "assets/images/hero_cinema_girl_1789711763078.jpg",
     director: "Priyadarshan",
-    trailer_key: "j7jPnwE3GjA",
+    trailer_key: "Bm5S7ZKk6K8",
     cast: [
       {
         name: "Saif Ali Khan",
@@ -109,7 +109,7 @@ const MOVIE_CATALOG = [
     banner_path: "attributes/banner/daayra_banner.jpg",
     backdrop_path: "assets/images/luxury_red_cinema_seats_1789711598902.jpg",
     director: "Meghna Gulzar",
-    trailer_key: "kv138wN1h4A",
+    trailer_key: "khru4exyahg",
     cast: [
       {
         name: "Kareena Kapoor Khan",
@@ -151,7 +151,7 @@ const MOVIE_CATALOG = [
     banner_path: "attributes/banner/vibe_banner.jpg",
     backdrop_path: "assets/images/hero_cinema_girl_1789711763078.jpg",
     director: "Kunal Khemu",
-    trailer_key: "j7jPnwE3GjA",
+    trailer_key: "meknZizkusk",
     cast: [
       {
         name: "Kunal Khemu",
@@ -193,7 +193,7 @@ const MOVIE_CATALOG = [
     banner_path: "attributes/banner/hanuman_ansh_banner.jpg",
     backdrop_path: "assets/images/hero_cinema_girl_1789711763078.jpg",
     director: "Vishal Chaturvedi",
-    trailer_key: "kv138wN1h4A",
+    trailer_key: "YZ2FbpJDVf0",
     cast: [
       {
         name: "Shobhinaw Satyaa",
@@ -230,7 +230,7 @@ const MOVIE_CATALOG = [
     banner_path: "attributes/banner/last_man_in_tower_banner.jpg",
     backdrop_path: "assets/images/cinema_friends_group_1789711657649.jpg",
     director: "Ritesh Batra",
-    trailer_key: "f2R_8gB40nU",
+    trailer_key: "q_rQBuliB9E",
     cast: [
       {
         name: "Manoj Bajpayee",
@@ -272,7 +272,7 @@ const MOVIE_CATALOG = [
     banner_path: "attributes/banner/jeevan_bheema_yojana_banner.jpg",
     backdrop_path: "assets/images/luxury_red_cinema_seats_1789711598902.jpg",
     director: "Abhishek Dogra",
-    trailer_key: "g3JUbgkWn34",
+    trailer_key: "ZrxMhElLMks",
     cast: [
       {
         name: "Arshad Warsi",
@@ -316,7 +316,7 @@ const MOVIE_CATALOG = [
     banner_path: "attributes/banner/resident_evil_banner.jpg",
     backdrop_path: "assets/images/cinema_friends_group_1789711657649.jpg",
     director: "Zach Cregger",
-    trailer_key: "Way9Dexny3w",
+    trailer_key: "mNd1gb19A-c",
     cast: [
       {
         name: "Austin Abrams",
