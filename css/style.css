@@ -93,22 +93,50 @@ button {
   transform: translateY(-1px);
 }
 
+/* Ticket Booking Cinema Icon Styling */
 .logo-icon,
-.logo-icon-svg {
-  width: 28px;
-  height: 28px;
+.ticket-icon {
+  width: 32px;
+  height: 32px;
   color: var(--accent-red);
   flex-shrink: 0;
   transform-origin: center;
-  filter: drop-shadow(0 0 6px rgba(229, 9, 20, 0.5));
-  animation: logoIconPulse 3.5s ease-in-out infinite;
-  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(229, 9, 20, 0.5));
+  animation: ticketKioskFloat 3s ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
 }
 
+.ticket-body {
+  transition: stroke 0.3s ease, filter 0.3s ease;
+}
+
+.ticket-stub-line {
+  stroke: rgba(255, 255, 255, 0.6);
+  animation: stubScanBeam 2.5s linear infinite;
+  transition: stroke 0.3s ease;
+}
+
+.ticket-play {
+  fill: var(--accent-red);
+  transform-origin: center;
+  animation: ticketPlayPulse 2.5s ease-in-out infinite;
+  transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover: Ticket Dispense, Tear & Validation Scan */
 .logo:hover .logo-icon,
-.logo:hover .logo-icon-svg {
-  transform: rotate(360deg) scale(1.12);
-  filter: drop-shadow(0 0 14px rgba(229, 9, 20, 0.95));
+.logo:hover .ticket-icon {
+  transform: rotate(-10deg) translateY(-2px) scale(1.18);
+  filter: drop-shadow(0 0 16px rgba(229, 9, 20, 0.95)) drop-shadow(0 0 4px #ff2d55);
+}
+
+.logo:hover .ticket-stub-line {
+  stroke: #00e699; /* Ticket Scanned Green Confirmation */
+}
+
+.logo:hover .ticket-play {
+  fill: #ffffff;
+  transform: scale(1.2);
 }
 
 .logo-brand {
@@ -125,14 +153,36 @@ button {
   letter-spacing: 2px;
 }
 
-@keyframes logoIconPulse {
+/* Ticket Booking Keyframe Animations */
+@keyframes ticketKioskFloat {
   0%, 100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 5px rgba(229, 9, 20, 0.4));
+    transform: translateY(0) rotate(0deg);
+    filter: drop-shadow(0 0 6px rgba(229, 9, 20, 0.5));
   }
   50% {
-    transform: scale(1.06);
-    filter: drop-shadow(0 0 11px rgba(229, 9, 20, 0.8));
+    transform: translateY(-3px) rotate(3deg);
+    filter: drop-shadow(0 0 12px rgba(229, 9, 20, 0.85));
+  }
+}
+
+@keyframes stubScanBeam {
+  0%, 100% {
+    stroke-opacity: 0.4;
+  }
+  50% {
+    stroke-opacity: 1;
+    stroke: var(--accent-red);
+  }
+}
+
+@keyframes ticketPlayPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
   }
 }
 
