@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinephilic - Cinema Catalog & Booking Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        <span class="logo-brand">CINEPHILIC</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="movies.html">Movies</a>
+        <a href="theatres.html">Theatres</a>
+        <a href="info.html">Help & Info</a>
+        <a href="profile.html">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="auth.html?mode=login" class="btn btn-secondary">Sign In</a>
+        <a href="auth.html?mode=register" class="btn btn-primary">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- BookMyShow-Style Movie Banner Slider Section -->
+    <section class="banner-slider-section" id="hero-section">
+      <div class="banner-slider-container">
+        <!-- Banner Slides Track -->
+        <div class="banner-slider-track" id="banner-slider-track">
+          <!-- Dynamically populated by js/home.js -->
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="banner-nav-btn prev-btn" id="banner-prev-btn" aria-label="Previous Slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="banner-nav-btn next-btn" id="banner-next-btn" aria-label="Next Slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Pagination Dots -->
+        <div class="banner-dots-container" id="banner-dots-container">
+          <!-- Dynamically populated by js/home.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Now Showing Section with Industry Filter -->
+    <section class="section">
+      <div class="section-header" style="flex-wrap: wrap; gap: 16px;">
+        <div>
+          <h2 class="section-title">Now Showing in Cinemas</h2>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Explore official releases playing across theaters</p>
+        </div>
+        
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="home-category-tabs">
+          <button class="home-cat-tab active btn btn-secondary" data-category="all" style="padding: 6px 14px; font-size: 0.82rem;">All Releases</button>
+          <button class="home-cat-tab btn btn-outline" data-category="bollywood" style="padding: 6px 14px; font-size: 0.82rem;">Bollywood</button>
+          <button class="home-cat-tab btn btn-outline" data-category="hollywood" style="padding: 6px 14px; font-size: 0.82rem;">Hollywood</button>
+          <button class="home-cat-tab btn btn-outline" data-category="regional" style="padding: 6px 14px; font-size: 0.82rem;">Regional</button>
+        </div>
+
+        <a href="movies.html" class="view-all-btn">View all movies →</a>
+      </div>
+
+      <div class="movie-grid-carousel" id="now-showing-grid">
+        <!-- Rendered dynamically via js/home.js -->
+      </div>
+    </section>
+
+    <!-- Premium Experience Banner -->
+    <section class="experience-banner-card">
+      <div class="exp-banner-overlay"></div>
+      <div class="exp-banner-body">
+        <span class="badge badge-red">PREMIUM EXPERIENCE</span>
+        <h2 class="exp-banner-title">More than a movie.<br>It's an experience.</h2>
+        <p class="exp-banner-desc">From comfy recliners to Dolby Atmos sound,<br>we take care of the details.</p>
+        <a href="theatres.html" class="btn btn-primary">Explore Theatres</a>
+      </div>
+    </section>
+
+    <!-- 4-Column Feature Highlights -->
+    <section class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon-circle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path></svg>
+        </div>
+        <h3 class="feature-title">Book with ease</h3>
+        <p class="feature-desc">Choose your movie, showtime and seats in just a few taps.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon-circle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path><path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"></path><path d="M5 18v2"></path><path d="M19 18v2"></path></svg>
+        </div>
+        <h3 class="feature-title">Pick your perfect seat</h3>
+        <p class="feature-desc">View seat map and select your favorite spot in real-time.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon-circle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+        </div>
+        <h3 class="feature-title">Secure checkout</h3>
+        <p class="feature-desc">Multiple payment options with 100% secure transactions.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon-circle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+        </div>
+        <h3 class="feature-title">Instant e-tickets</h3>
+        <p class="feature-desc">Get your tickets instantly on phone. No printing. No hassle.</p>
+      </div>
+    </section>
+
+    <!-- Limited Time Offer Promo Banner -->
+    <section class="promo-banner-card">
+      <div class="promo-banner-overlay"></div>
+      <div class="promo-banner-body">
+        <span class="badge badge-red">LIMITED TIME OFFER</span>
+        <h2 class="promo-banner-title">Movies are better<br>together</h2>
+        <p class="promo-banner-desc">Get up to 25% off on group bookings.<br>Because every story is better shared.</p>
+        <a href="movies.html" class="btn btn-secondary">Grab the Offer</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="9"/>
+              <polygon points="10 8 16 12 10 16 10 8"/>
+            </svg>
+            <span class="logo-brand">CINEPHILIC</span>
+          </a>
+          <p>The movies you love. The experience you deserve.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="movies.html">Movies</a></li>
+            <li><a href="theatres.html">Theatres</a></li>
+            <li><a href="info.html">Offers</a></li>
+            <li><a href="info.html">Gift Cards</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="info.html">Help Center</a></li>
+            <li><a href="info.html">FAQs</a></li>
+            <li><a href="info.html">Contact Us</a></li>
+            <li><a href="info.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="info.html">About Us</a></li>
+            <li><a href="info.html">Press</a></li>
+            <li><a href="info.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Cinephilic</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/movies-data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
