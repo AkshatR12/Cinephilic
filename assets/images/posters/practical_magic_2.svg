@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="750" viewBox="0 0 500 750">
+    <defs>
+      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6b21a8" />
+        <stop offset="100%" stop-color="#3b0764" />
+      </linearGradient>
+      <linearGradient id="overlay" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="transparent" />
+        <stop offset="60%" stop-color="rgba(10,10,16,0.7)" />
+        <stop offset="100%" stop-color="#0a0a10" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Background Gradient -->
+    <rect width="500" height="750" fill="url(#grad)" />
+    
+    <!-- Decorative Grid & Patterns -->
+    <circle cx="250" cy="300" r="180" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2" />
+    <circle cx="250" cy="300" r="120" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+    
+    <!-- Central Icon -->
+    <text x="250" y="320" font-size="90" text-anchor="middle" dominant-baseline="middle" opacity="0.9">✨</text>
+    
+    <!-- Overlay Gradient -->
+    <rect width="500" height="750" fill="url(#overlay)" />
+    
+    <!-- CBFC Rating Badge -->
+    <rect x="30" y="30" width="100" height="32" rx="6" fill="rgba(0,0,0,0.6)" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+    <text x="80" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="bold" fill="#ffd700" text-anchor="middle">CBFC: UA</text>
+    
+    <!-- Movie Title & Subtitle -->
+    <text x="250" y="580" font-family="'Plus Jakarta Sans', sans-serif" font-size="34" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1">PRACTICAL MAGIC 2</text>
+    <text x="250" y="620" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#ff2a5f" text-anchor="middle" letter-spacing="2">THE OWENS SISTERS RETURN</text>
+    
+    <!-- Bottom Branding Tag -->
+    <line x1="100" y1="655" x2="400" y2="655" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+    <text x="250" y="690" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="3">CINEPHILIC OFFICIAL THEATRICAL RELEASE</text>
+  </svg>
